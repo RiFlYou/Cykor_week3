@@ -11,7 +11,7 @@ $special_message = "";
 if (isset($_POST['increase'])) {
     $count++;
     if($count == 10){
-       $special_message = "<h3 style = 'color: crimson;'> 우주 최강 해킹 동아리 Cykor! </h3>";
+       $special_message = "<h3 style = 'color: crimson;'> 우g주 최강 해킹 동아리 Cykor! </h3>";
        $count = 0;
     }
     file_put_contents($counter_file, $count);
@@ -34,12 +34,12 @@ if(!isset($_SESSION["username"])){
         <p>페이지에 방문하신 걸 환영합니다!!</p>
         <a href="logout.php">로그아웃</a><br>
         <ol>
-            <li>
-                <a href="write.php">게시글 작성하기</a><br>
+            <li> <a href="write.php">게시글 작성하기</a><br> </li>
+            <li> <a href="my_post.php">내가 쓴 글 보기</a><br> </li> 
+            <li> <a href="list.php"> 게시글 보기</a><br> </li>
                 <?php if ($_SESSION["is_admin"] ?? false): ?>
-                    <p><a href="user_list.php"> 회원 목록 보기</a></p>
+                <li> <p><a href="user_list.php"> 회원 목록 보기</a></p> </li>
                 <?php endif; ?>
-            </li>
         </ol>
         <img src="cykor.jpg" alt="우주 최강 해킹 동아리 Cykor" width="300">
         <h4>- Cykor -</h4>

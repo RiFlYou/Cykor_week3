@@ -24,18 +24,26 @@ $result = $conn->query($sql);
             <th>제목</th>
             <th>글쓴이</th>
             <th>작성 시간</th>
+            <th>관리</th> 
         </tr>
         <?php while($row = $result->fetch_assoc()) { ?>
         <tr>
             <td><?= $row['id'] ?></td>
             <td>
                 <a href="view.php?id=<?= $row['id'] ?>"><?= htmlspecialchars($row['title']) ?></a>
-                <?php if (isset($_SESSION["username"]) && $_SESSION["username"] === $row["author"]): ?>
-        |       <a href="edit.php?id=<?= $row['id'] ?>"> 수정 </a>
-                <?php endif; ?>
             </td>
             <td><?= htmlspecialchars($row['author']) ?></td>
             <td><?= $row['created_at'] ?></td>
+            <td>
+                <?php if (isset($_SESSION["username"]) && 
+                          ($_SESSION["username"] === $row["author"] || ($_SESSION["is_admin"] ?? false))): ?>
+                    <a href="edit.php?id=<?= $row['id'] ?>">수정</a>
+                    <form action="delete_process.php" method="POST" style="display:inline;" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                        <input type="submit" value="삭제">
+                    </form>
+                <?php endif; ?>
+            </td>
         </tr>
         <?php } ?>
     </table>
