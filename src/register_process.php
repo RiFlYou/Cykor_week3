@@ -9,6 +9,18 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
 
+$check = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$check->bind_param("s", $username);
+$check->execute();
+$check_result = $check->get_result();
+
+if ($check_result->num_rows > 0) {
+    echo "<script>
+        alert('이미 존재하는 아이디입니다.');
+        history.back();
+    </script>";
+    exit;
+}
 $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
 $stmt->bind_param("ss", $username, $hashed_pw);
 
