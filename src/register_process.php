@@ -13,8 +13,10 @@ $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
 $stmt->bind_param("ss", $username, $hashed_pw);
 
 if ($stmt->execute()) {
-    echo "회원가입 성공!";
-} else {
+    echo "회원가입 성공!<br>"; 
+    echo "<p><a href='main.php'>메인 화면으로 이동</a></p>";
+}
+else {
     echo "에러 발생: " . $stmt->error;
 }
 
