@@ -13,6 +13,7 @@
         <input type="password" name="password" required><br><br>
 
         <input type="submit" value="로그인">
+        <p><a href="register.php">회원가입</a></p>
         </form>
     </body>
 </html>
