@@ -20,7 +20,8 @@ if($stmt->num_rows === 1){
 
     if(password_verify($password, $hased_pw)){
         $_SESSION['username'] = $username;
-        echo "로그인 성공! 환영합니다 $username 님.";
+        header("Location: main.php"); 
+        exit;
     }
     else{ 
         echo "잘못된 비밀번호입니다.";
