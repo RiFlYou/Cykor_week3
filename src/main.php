@@ -11,7 +11,7 @@ $special_message = "";
 if (isset($_POST['increase'])) {
     $count++;
     if($count == 10){
-       $special_message = "<h3 style = 'color: crimson;'> 우g주 최강 해킹 동아리 Cykor! </h3>";
+       $special_message = "<h3 style = 'color: crimson;'> 우주 최강 해킹 동아리 Cykor! </h3>";
        $count = 0;
     }
     file_put_contents($counter_file, $count);
